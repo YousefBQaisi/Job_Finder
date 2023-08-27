@@ -1,46 +1,31 @@
-import { View, Text, ScrollView, SafeAreaView } from "react-native";
-import { useState } from "react";
-import { Stack, useRouter } from "expo-router";
-import { COLORS, icons, images, SIZES } from "../constants"
-import { Nearbyjobs, Popularjobs, Welcome, ScreenHeaderBtn } from "../components"
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import WelcomeScreen from '../screens/WelcomeScreen';
+import LoginScreen from '../screens/LoginScreen'
+import RegisterScreen from '../screens/RegisterSrceen'
 
-const Home = () => {
-    const router = useRouter();
-    const [searchTerm, setSearchTerm] = useState("")
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Home from '../screens/Home';
+
+export default function App() {
+    const Stack = createNativeStackNavigator();
 
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
+        <Stack.Navigator>
             <Stack.Screen
-                options={{
-                    headerStyle: { backgroundColor: COLORS.lightWhite },
-                    headerShadowVisible: false,
-                    headerLeft: () => (
-                        <ScreenHeaderBtn iconUrl={icons.menu} dimension="60%" />
-                    ),
-                    headerRight: () => (
-                        <ScreenHeaderBtn iconUrl={images.profile} dimension="60%" />
-                    ),
-                    headerTitle:""
-                }}
+            options={{headerTitle:" "}}
+                name="Welcome"
+                component={WelcomeScreen}
             />
-            <ScrollView showsVerticalScrollIndicator={false}>
-                <View style={{flex:1,padding:SIZES.medium}}>
-                    <Welcome
-                    searchTerm={searchTerm}
-                    setSearchTerm={setSearchTerm}
-                    handleClick={()=>{
-                        if(searchTerm){
-                            router.push(`/search/${searchTerm}`)
-                        }
+            <Stack.Screen options={{headerTitle:" "}} name="Login" component={LoginScreen} />
+            <Stack.Screen options={{headerTitle:" "}} name="Register" component={RegisterScreen} />
+            <Stack.Screen options={{headerTitle:" "}} name="Home" component={Home} />
+        </Stack.Navigator>
 
-                    }}
 
-                    />
-                    <Popularjobs></Popularjobs>
-                    <Nearbyjobs></Nearbyjobs>
-                </View>
-            </ScrollView>
-        </SafeAreaView>
-    )
+    );
 }
-export default Home;
+
+const styles = StyleSheet.create({
+
+});
