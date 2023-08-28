@@ -21,7 +21,7 @@ const Home = () => {
                     headerRight: () => (
                         <ScreenHeaderBtn iconUrl={images.profile} dimension="60%" />
                     ),
-                   x
+                   
                 }}
             />
             <ScrollView showsVerticalScrollIndicator={false}>
